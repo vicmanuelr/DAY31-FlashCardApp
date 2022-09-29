@@ -29,8 +29,9 @@ def new_card():
 
 
 def flip_card():
+    word_learning = current_card[language_to_learn] + "\n" + current_card[translation]
     canvas.itemconfigure(card_title, text=translation, fill="white")
-    canvas.itemconfigure(card_word, text=current_card[translation], fill="white")
+    canvas.itemconfigure(card_word, text=word_learning, fill="white")
     canvas.itemconfigure(card_background, image=back_img)
 
 
@@ -48,7 +49,7 @@ front_img = PhotoImage(file="./images/card_front.png")
 canvas = Canvas(width=800, height=526, bg=BACKGROUND_COLOR, highlightthickness=0)
 canvas.grid(column=0, columnspan=2, row=0)
 card_background = canvas.create_image(400, 263, image=front_img)
-card_title = canvas.create_text(400, 150, text="Title", justify="center", font=LANGUAGE_FONT)
+card_title = canvas.create_text(400, 125, text="Title", justify="center", font=LANGUAGE_FONT)
 card_word = canvas.create_text(400, 263, text="Word", justify="center", font=WORD_FONT)
 # spelling_text = canvas.create_text(400, 150, text="Title", justify="center")
 
