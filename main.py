@@ -21,6 +21,14 @@ finally:
     current_card = {}
 
 
+def word_learned():
+    global current_card
+    to_learn.remove(current_card)
+    new_list = pd.DataFrame(to_learn)
+    new_list.to_csv("./data/words_to_learn.csv", index=False)
+    new_card()
+
+
 def new_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
@@ -58,7 +66,7 @@ card_word = canvas.create_text(400, 263, text="Word", justify="center", font=WOR
 
 # Buttons
 right_img = PhotoImage(file="./images/right.png")
-right_button = Button(image=right_img, highlightthickness=0, command=new_card)
+right_button = Button(image=right_img, highlightthickness=0, command=word_learned)
 right_button.grid(column=1, row=1)
 wrong_img = PhotoImage(file="./images/wrong.png")
 wrong_button = Button(image=wrong_img, highlightthickness=0, command=new_card)
