@@ -10,12 +10,15 @@ WORD_FONT = ("noto-cjk", 80, "bold")
 IDLE = 3000
 
 # ---------------------------- DATA/PANDAS ------------------------------- #
-
-data = pd.read_csv("./data/Japanese Words - Alphabet.csv")
-to_learn = data.to_dict(orient="records")
-language_to_learn = data.columns[0]
-translation = data.columns[1]
-current_card = {}
+try:
+    data = pd.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    data = pd.read_csv("./data/Japanese Words - Alphabet.csv")
+finally:
+    to_learn = data.to_dict(orient="records")
+    language_to_learn = data.columns[0]
+    translation = data.columns[1]
+    current_card = {}
 
 
 def new_card():
